@@ -105,7 +105,7 @@ def process(automata, words):
     Os resultados válidos são ACEITA, REJEITA, INVALIDA.
     """
 
-    words = words.split()
+    words = list(words)
 
     estadoAtual = estadoInicial[0]
 
