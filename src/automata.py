@@ -55,17 +55,9 @@ def load_automata(filename):
     regrasTransicao = auxiliar[4:]
 
     """
-    # Prints para facilitar testes locais
-    print("Simbolos: ", simbolos)
-    print("estados:", estados)
-    print("Estados Finais: ", estadosFinais)
-    print("Estado Inicial: ", estadoInicial)
-    print("Regras de Transição: ", regrasTransicao)
-    """
-
-    """
     valida simbolos
     """
+
     for valor in simbolos:
         if not isinstance(valor, str) or not valor.isalpha():
             raise Exception("simbolos inválidos")
@@ -76,7 +68,7 @@ def load_automata(filename):
     for valor in estados:
         if not valor.startswith("q"):
             raise Exception("Estados Inválidos")
-    
+        
     """
     valida Estados Finais
     """
@@ -140,19 +132,4 @@ def Transicao(regrasTransicao, estadoAtual, word):
         if transicao[0] == estadoAtual and transicao[1] == word:
             return transicao[2]
     return None
-
-"""
-    ### criado para teste local
-    def main(): 
-
-        automata = load_automata("/home/douglas/projetos-git/automata-2024-t1/examples/01-simples.txt")
-        words = input()
-        retorno = process(automata, words)
-        print(retorno)
-
-
-    if __name__=="__main__": 
-            main()
-
-"""
  
