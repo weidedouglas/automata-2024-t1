@@ -127,9 +127,9 @@ def process(automata, words):
     if estadoAtual is not None:
         print(f"Estado Final: {estadoAtual}")
         if estadoAtual in estadosFinais:
-            print("ACEITA")
+            return("ACEITA")
         else: 
-            print("REJEITA")
+            return("REJEITA")
     else:
         raise Exception("ERRO ao validar a transicao/estado")
  
@@ -140,19 +140,19 @@ def Transicao(regrasTransicao, estadoAtual, word):
         if transicao[0] == estadoAtual and transicao[1] == word:
             return transicao[2]
     return None
-"""
-### criado para teste local
-def main(): 
-
-    automata = load_automata("/home/douglas/projetos-git/automata-2024-t1/examples/01-simples.txt")
-    words = input()
-    process(automata, words)
-
-
-
-if __name__=="__main__": 
-        main()
 
 """
-  
+    ### criado para teste local
+    def main(): 
+
+        automata = load_automata("/home/douglas/projetos-git/automata-2024-t1/examples/01-simples.txt")
+        words = input()
+        retorno = process(automata, words)
+        print(retorno)
+
+
+    if __name__=="__main__": 
+            main()
+
+"""
  
