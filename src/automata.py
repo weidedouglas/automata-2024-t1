@@ -54,12 +54,14 @@ def load_automata(filename):
     estadoInicial = auxiliar[3] 
     regrasTransicao = auxiliar[4:]
 
+    """
+    # Prints para facilitar testes locais
     print("Simbolos: ", simbolos)
     print("estados:", estados)
     print("Estados Finais: ", estadosFinais)
     print("Estado Inicial: ", estadoInicial)
     print("Regras de Transição: ", regrasTransicao)
-
+    """
 
     """
     valida simbolos
@@ -111,8 +113,46 @@ def process(automata, words):
     Os resultados válidos são ACEITA, REJEITA, INVALIDA.
     """
 
+    words = words.split()
 
+    estadoAtual = estadoInicial[0]
 
     for word in words:
-        # tenta reconhecer `word`
-        pass
+        if word not in simbolos:
+            return print("INVÁLIDA")
+        estadoAtual = Transicao(regrasTransicao, estadoAtual, word)  
+        if estadoAtual == None: 
+            break   
+
+    if estadoAtual is not None:
+        print(f"Estado Final: {estadoAtual}")
+        if estadoAtual in estadosFinais:
+            print("ACEITA")
+        else: 
+            print("REJEITA")
+    else:
+        raise Exception("ERRO ao validar a transicao/estado")
+ 
+
+
+def Transicao(regrasTransicao, estadoAtual, word):
+    for transicao in regrasTransicao:
+        if transicao[0] == estadoAtual and transicao[1] == word:
+            return transicao[2]
+    return None
+"""
+### criado para teste local
+def main(): 
+
+    automata = load_automata("/home/douglas/projetos-git/automata-2024-t1/examples/01-simples.txt")
+    words = input()
+    process(automata, words)
+
+
+
+if __name__=="__main__": 
+        main()
+
+"""
+  
+ 
